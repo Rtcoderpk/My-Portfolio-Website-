@@ -218,7 +218,7 @@ export default function Hero() {
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.25 }}
                 >
-                  <FileDown size={16} /> CV
+                  <FileDown size={16} /> Resume
                 </motion.a>
               </div>
             )}
