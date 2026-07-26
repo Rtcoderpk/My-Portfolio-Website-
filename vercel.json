@@ -3,7 +3,6 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install --legacy-peer-deps",
   "framework": "nextjs",
-  "rootDirectory": "./",
   "env": {
     "NEXT_PUBLIC_SITE_URL": "@next_public_site_url"
   },
