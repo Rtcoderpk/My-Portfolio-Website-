@@ -233,7 +233,6 @@ export default function Hero() {
                   transition={{ delay: i * 0.08, duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
                   className="glass px-4 py-4"
                   whileHover={{ y: -3, boxShadow: '0 0 40px rgba(139,92,246,0.25)' }}
-                  transition={{ duration: 0.25 }}
                 >
                   <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${s.color} flex items-center justify-center mb-3 shadow-glow-sm`}>
                     <s.icon size={16} />
