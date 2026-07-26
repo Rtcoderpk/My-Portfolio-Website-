@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk, Inter } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import '@/styles/globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -59,6 +60,7 @@ export default function RootLayout({
           <div className="absolute top-1/3 right-0 w-96 h-96 bg-secondary/10 rounded-full filter blur-[100px]" />
         </div>
         {children}
+        <Analytics />
       </body>
     </html>
   );
