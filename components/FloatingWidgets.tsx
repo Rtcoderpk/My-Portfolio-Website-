@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MessageCircle, Mic, X, Send } from 'lucide-react';
 import { siteConfig } from '@/config/site';
@@ -10,11 +10,13 @@ export default function FloatingWidgets() {
   const [voiceOpen, setVoiceOpen] = useState(false);
   const [chatInput, setChatInput] = useState('');
 
-  const handleChatSubmit = () => {
+  const handleChatSubmit = useCallback(() => {
     if (!chatInput.trim()) return;
-    window.open(`mailto:${siteConfig.email}?subject=Portfolio Chat Inquiry&body=${encodeURIComponent(chatInput)}`);
+    window.open(
+      `mailto:${siteConfig.email}?subject=Portfolio Chat Inquiry&body=${encodeURIComponent(chatInput)}`
+    );
     setChatInput('');
-  };
+  }, [chatInput]);
 
   return (
     <div className="fixed bottom-5 right-4 sm:right-6 z-50 hidden md:flex flex-col items-end gap-3">
@@ -25,9 +27,10 @@ export default function FloatingWidgets() {
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 10 }}
+            transition={{ duration: 0.2 }}
             className="glass-strong w-64 p-5 flex flex-col items-center"
           >
-            <button type="button" onClick={() => setVoiceOpen(false)} className="self-end text-gray-400 hover:text-white -mt-1 -mr-1" aria-label="Close voice assistant">
+            <button type="button" onClick={() => setVoiceOpen(false)} className="self-end text-gray-400 hover:text-white -mt-1 -mr-1 transition-colors" aria-label="Close voice assistant">
               <X size={16} />
             </button>
             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-glow mb-4 relative">
@@ -59,6 +62,7 @@ export default function FloatingWidgets() {
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 10 }}
+            transition={{ duration: 0.2 }}
             className="glass-strong w-72 sm:w-80 p-4"
           >
             <div className="flex items-center justify-between mb-3">
@@ -73,7 +77,7 @@ export default function FloatingWidgets() {
                   </div>
                 </div>
               </div>
-              <button type="button" onClick={() => setChatOpen(false)} className="text-gray-400 hover:text-white" aria-label="Close chat assistant">
+              <button type="button" onClick={() => setChatOpen(false)} className="text-gray-400 hover:text-white transition-colors" aria-label="Close chat assistant">
                 <X size={16} />
               </button>
             </div>
@@ -87,7 +91,7 @@ export default function FloatingWidgets() {
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleChatSubmit(); }}
-                className="flex-1 bg-white/[0.04] border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder:text-gray-500 focus:outline-none focus:border-secondary/50"
+                className="flex-1 bg-white/[0.04] border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder:text-gray-500 focus:outline-none focus:border-secondary/50 transition-colors"
               />
               <button type="button" onClick={handleChatSubmit} className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center shrink-0" aria-label="Send chat message">
                 <Send size={14} />
@@ -105,7 +109,7 @@ export default function FloatingWidgets() {
           type="button"
           onClick={() => setVoiceOpen((v) => !v)}
           className="w-[52px] h-[52px] rounded-full bg-white/[0.06] backdrop-blur-xl border border-white/10 flex items-center justify-center shadow-card hover:border-secondary/40 transition-colors focus-visible:border-secondary/50"
-          aria-label="Voice assistant"
+          aria-label={voiceOpen ? 'Close voice assistant' : 'Open voice assistant'}
         >
           <Mic size={20} className="text-secondary" />
         </motion.button>
@@ -115,7 +119,7 @@ export default function FloatingWidgets() {
           type="button"
           onClick={() => setChatOpen((v) => !v)}
           className="w-[52px] h-[52px] rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-glow focus-visible:ring-2 focus-visible:ring-violet-400/60"
-          aria-label="Chat assistant"
+          aria-label={chatOpen ? 'Close chat assistant' : 'Open chat assistant'}
         >
           <MessageCircle size={22} />
         </motion.button>

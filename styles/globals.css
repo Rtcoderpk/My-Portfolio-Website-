@@ -12,14 +12,12 @@ html {
   scroll-behavior: smooth;
 }
 
-section {
-  scroll-margin-top: 6rem;
-}
-
 body {
   background: #08070f;
   color: #e5e7eb;
   overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
@@ -88,52 +86,52 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Smooth scrolling */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(8, 7, 15, 0.6);
-}
-
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #08070f; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.4);
-  border-radius: 5px;
+  background: rgba(139, 92, 246, 0.35);
+  border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.7);
+  background: rgba(139, 92, 246, 0.6);
 }
 
-/* Custom cursor glow (desktop only, non-blocking) */
-@media (min-width: 768px) {
-  .cursor-glow {
-    pointer-events: none;
+/* GPU-accelerated animations */
+.gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
+  html { scroll-behavior: auto; }
 }
 
+/* Mobile typography */
 @media (max-width: 767px) {
   main section h1 {
     font-size: clamp(1.4rem, 6.2vw, 1.8rem);
   }
-
   main section h2 {
     font-size: clamp(1.55rem, 6.4vw, 2rem);
     line-height: 1.12;
     letter-spacing: -0.015em;
   }
-
   main section h3 {
     font-size: clamp(1.02rem, 4.2vw, 1.2rem);
     line-height: 1.2;
   }
-
   main section p {
     font-size: 0.95rem;
     line-height: 1.68;
   }
-
   main section li {
     font-size: 0.93rem;
     line-height: 1.55;

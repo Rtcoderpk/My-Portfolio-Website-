@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -48,7 +48,7 @@ const config: Config = {
         'particle-float': 'particle-float 12s ease-in-out infinite',
         'gradient-shift': 'gradient-shift 9s ease-in-out infinite',
         'grid-fade': 'grid-fade 1.5s ease-out forwards',
-        blink: 'blink 1.4s ease-in-out infinite',
+        blink: 'blink 1s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -68,8 +68,8 @@ const config: Config = {
           '100%': { strokeDashoffset: '0' },
         },
         blink: {
-          '0%, 80%, 100%': { opacity: '0.3', transform: 'scale(0.85)' },
-          '40%': { opacity: '1', transform: 'scale(1)' },
+          '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+          '50%': { opacity: '0.3', transform: 'scale(0.85)' },
         },
         'hex-flow': {
           '0%': { strokeDashoffset: '3600' },
@@ -97,6 +97,6 @@ const config: Config = {
     },
   },
   plugins: [],
-}
+};
 
-export default config
+export default config;
